@@ -1,0 +1,21 @@
+enum BidState {
+  TENDING
+  DENTING
+  DEALT
+}
+
+type Bid @entity {
+  id: ID!
+  bid: BigInt! # Amount offered
+  lot: BigInt! # Quantity up for auction
+  guy: Bytes!  # High bidder
+  tic: BigInt! # Bid expiration timestamp
+  end: BigInt! # Max auction duration
+  usr: Bytes!  # Address of the vault being auctioned
+  gal: Bytes!  # Recipient of auction income (Vow contract)
+  tab: BigInt! # Dai to be raised in auction
+  state: BidState! # Wether deal was called on this Bid
+  origLot: BigInt! # Lot, when the Bid is created
+  dealTxHash: Bytes # Transaction hash of the deal call
+  ilk: String! # Collateral type (ETH, USDC, etc)
+}
